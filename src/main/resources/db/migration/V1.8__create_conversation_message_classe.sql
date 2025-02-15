@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS ConversationMessages
+(
+    id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    message_id BIGINT NOT NULL,
+    conversation_id BIGINT NOT NULL,
+    created_at  TIMESTAMP  DEFAULT CURRENT_TIMESTAMP,
+    is_active TINYINT(1) NOT NULL DEFAULT 1,
+    unread_messages INTEGER NOT NULL DEFAULT 0,
+    updated_at TIMESTAMP  DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT conversation_id_fk FOREIGN KEY  (conversation_id) REFERENCES Conversations(id) ON DELETE CASCADE,
+    CONSTRAINT message_id_fk FOREIGN KEY (message_id) REFERENCES Messages(id) ON DELETE CASCADE
+);
